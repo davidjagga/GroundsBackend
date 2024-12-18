@@ -8,8 +8,8 @@ app.use(express.json());
 
 // const port = process.env.PORT;
 // const apiRoutes = require('./routes/api');
-const ridesRoutes = require('/ride');
-const userRoutes = require('/user');
+const ridesRoutes = require('./ride');
+const userRoutes = require('./user');
 
 
 // // Database connection

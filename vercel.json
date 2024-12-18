@@ -5,10 +5,5 @@
       "src": "/api/(.*)",
       "dest": "/api/index.js"
     }
-  ],
-  "build": {
-    "env": {
-      "DATABASE_URL": "postgresql://ridedb_owner:dCXzt20BvcmH@ep-hidden-pine-a4u9j1ox-pooler.us-east-1.aws.neon.tech/ridedb?sslmode=require"
-    }
-  }
+  ]
 }
