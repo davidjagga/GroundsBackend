@@ -3,11 +3,13 @@ const express = require('express');
 // const { Pool } = require('pg'); // Import the Pool class from pg
 // require('dotenv').config();
 
-// const app = express();
+const app = express();
+app.use(express.json());
+
 // const port = process.env.PORT;
 // const apiRoutes = require('./routes/api');
-// const ridesRoutes = require('./routes/ride');
-// const userRoutes = require('./routes/user');
+const ridesRoutes = require('/ride');
+const userRoutes = require('/user');
 
 
 // // Database connection
@@ -17,10 +19,8 @@ const express = require('express');
 
 // // Middleware
 // app.use(cors());
-// app.use(express.json());
-// app.use('/api/test', apiRoutes);
-// // app.use('/api/rides', ridesRoutes);
-// // app.use('/api/user', userRoutes);
+app.use('/api/rides', ridesRoutes);
+app.use('/api/user', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World');
