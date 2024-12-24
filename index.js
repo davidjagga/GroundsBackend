@@ -10,7 +10,7 @@ app.use(express.json());
 
 // const ridesRoutes = require('./api/ride');
 // const userRoutes = require('./api/user');
-const testRoutes = require('./api/test');
+// const testRoutes = require('./api/test');
 
 
 // Database connection
@@ -22,7 +22,7 @@ const pool = new Pool({
 app.use(cors());
 // app.use('/api/rides', ridesRoutes);
 // app.use('/api/user', userRoutes);
-app,use('/test', testRoutes)
+// app,use('/test', testRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello World');
