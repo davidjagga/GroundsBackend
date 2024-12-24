@@ -161,7 +161,13 @@ router.post('/getUser', async (req, res) => {
   }
 });
 
+
 //------------------------------------------------------------------------------------------
+
+//basic router
+router.get('/', (req, res) => {
+  res.status(200).json({ message: 'GET request to /user is working!' });
+});
 
 module.exports = router;
   
