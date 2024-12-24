@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 
 
-const ridesRoutes = require('./api/ride');
-const userRoutes = require('./api/user');
+// const ridesRoutes = require('./api/ride');
+// const userRoutes = require('./api/user');
 const testRoutes = require('./api/test');
 
 
