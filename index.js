@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 
 
-const ridesRoutes = require('./api/ride');
-const userRoutes = require('./api/user');
+// const ridesRoutes = require('./api/ride');
+// const userRoutes = require('./api/user');
 
 
 // Database connection
@@ -18,7 +18,7 @@ const pool = new Pool({
 });
 
 // // Middleware
-// app.use(cors());
+app.use(cors());
 // app.use('/api/rides', ridesRoutes);
 // app.use('/api/user', userRoutes);
 
