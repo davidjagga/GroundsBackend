@@ -7,9 +7,9 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 
-// const apiRoutes = require('./routes/api');
-// const ridesRoutes = require('./api/ride');
-// const userRoutes = require('./api/user');
+const apiRoutes = require('./routes/api');
+const ridesRoutes = require('./api/ride');
+const userRoutes = require('./api/user');
 
 
 // Database connection
