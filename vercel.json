@@ -1,19 +1,6 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/index.js"
-    }
-  ],
-  "env": {
-    "DATABASE_URL": "postgresql://ridedb_owner:dCXzt20BvcmH@ep-hidden-pine-a4u9j1ox-pooler.us-east-1.aws.neon.tech/ridedb?sslmode=require"
-
-  }
+    { "src": "index.js", "use": "@vercel/node" }
+  ]
 }

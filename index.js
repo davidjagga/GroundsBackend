@@ -1,4 +1,5 @@
 const express = require('express');
+const PORT = process.env.PORT || 3000;
 // const cors = require('cors');
 // const { Pool } = require('pg'); // Import the Pool class from pg
 // require('dotenv').config();
@@ -8,8 +9,8 @@ app.use(express.json());
 
 // const port = process.env.PORT;
 // const apiRoutes = require('./routes/api');
-const ridesRoutes = require('./ride');
-const userRoutes = require('./user');
+// const ridesRoutes = require('./api/ride');
+// const userRoutes = require('./api/user');
 
 
 // // Database connection
@@ -19,12 +20,14 @@ const userRoutes = require('./user');
 
 // // Middleware
 // app.use(cors());
-app.use('/api/rides', ridesRoutes);
-app.use('/api/user', userRoutes);
+// app.use('/api/rides', ridesRoutes);
+// app.use('/api/user', userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-//didn't have this
-module.exports = app;
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
