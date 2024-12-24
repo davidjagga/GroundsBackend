@@ -2,7 +2,7 @@ const express = require('express');
 const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 const { Pool } = require('pg'); // Import the Pool class from pg
-// require('dotenv').config();
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
