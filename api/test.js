@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { PrismaClient, Approval } = require('@prisma/client');
+
+const prisma = new PrismaClient();
 
 // Test route for GET request
 router.get('/', (req, res) => {
