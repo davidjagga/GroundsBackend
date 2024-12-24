@@ -12,10 +12,10 @@ app.use(express.json());
 // const userRoutes = require('./api/user');
 
 
-// // Database connection
-// // const pool = new Pool({
-// //   connectionString: process.env.DATABASE_URL, // Set this in your .env file
-// // });
+// Database connection
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL, // Set this in your .env file
+});
 
 // // Middleware
 // app.use(cors());
