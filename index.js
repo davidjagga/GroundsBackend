@@ -1,13 +1,12 @@
 const express = require('express');
 const PORT = process.env.PORT || 3000;
 const cors = require('cors');
-// const { Pool } = require('pg'); // Import the Pool class from pg
+const { Pool } = require('pg'); // Import the Pool class from pg
 // require('dotenv').config();
 
 const app = express();
 app.use(express.json());
 
-// const port = process.env.PORT;
 // const apiRoutes = require('./routes/api');
 // const ridesRoutes = require('./api/ride');
 // const userRoutes = require('./api/user');
