@@ -14,13 +14,17 @@ datasource db {
 }
 
 model User {
-  id           String         @id
-  name         String?
-  email        String?        @unique
-  gradYear     Int?
-  profile      String?
-  rides        Ride[]
-  rideRequests RideRequests[]
+  id              String         @id
+  name            String?
+  email           String?        @unique
+  gradYear        Int?
+  profile         String?
+  rides           Ride[]
+  rideRequests    RideRequests[]
+  totalRidesGiven Int            @default(0)
+  totalRidesTaken Int            @default(0)
+  riderRating     Decimal        @default(5.0)
+  driverRating    Decimal        @default(5.0)
 }
 
 model Ride {
@@ -36,12 +40,13 @@ model Ride {
 }
 
 model RideRequests {
-  userId   String
-  user     User     @relation(fields: [userId], references: [id])
-  rideId   Int
-  ride     Ride     @relation(fields: [rideId], references: [id])
-  note     String
-  approval Approval @default(PENDING)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  rideId      Int
+  ride        Ride     @relation(fields: [rideId], references: [id])
+  note        String
+  approval    Approval @default(PENDING)
+  requestTime DateTime
 
   @@id([userId, rideId])
 }
