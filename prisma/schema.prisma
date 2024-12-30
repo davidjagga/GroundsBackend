@@ -3,6 +3,7 @@
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+//npx prisma migrate dev -- RUN THIS AFTER UPDATES
 
 generator client {
   provider = "prisma-client-js"
@@ -31,7 +32,8 @@ model Ride {
   id           Int            @id @default(autoincrement())
   creator      User           @relation(fields: [userId], references: [id])
   title        String
-  location     String
+  location     Location       @relation(fields: [locationId], references: [id])
+  locationId   Int
   dateTime     DateTime?
   rideStatus   Status         @default(EMPTY)
   desc         String?
@@ -49,6 +51,13 @@ model RideRequests {
   requestTime DateTime
 
   @@id([userId, rideId])
+}
+
+model Location {
+  id    Int    @id @default(autoincrement())
+  city  String
+  state String
+  Ride  Ride[]
 }
 
 enum Status {
