@@ -56,12 +56,12 @@ model RideRequests {
 }
 
 model Location {
-  id               Int    @id @default(autoincrement())
-  title            String
+  id               Int     @id @default(autoincrement())
+  title            String?
   city             String
   state            String
-  destinationRides Ride[] @relation("DestinationRelation")
-  startRides       Ride[] @relation("StartRelation")
+  destinationRides Ride[]  @relation("DestinationRelation")
+  startRides       Ride[]  @relation("StartRelation")
 }
 
 enum Status {
