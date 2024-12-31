@@ -64,6 +64,7 @@ enum Status {
   EMPTY
   PENDING
   FULL
+  CANCELLED
 }
 
 enum Approval {
