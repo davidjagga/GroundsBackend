@@ -29,16 +29,18 @@ model User {
 }
 
 model Ride {
-  id           Int            @id @default(autoincrement())
-  creator      User           @relation(fields: [userId], references: [id])
-  title        String
-  location     Location       @relation(fields: [locationId], references: [id])
-  locationId   Int
-  dateTime     DateTime?
-  rideStatus   Status         @default(EMPTY)
-  desc         String?
-  userId       String
-  rideRequests RideRequests[]
+  id            Int            @id @default(autoincrement())
+  creator       User           @relation(fields: [userId], references: [id])
+  title         String
+  destination   Location       @relation("DestinationRelation", fields: [destinationId], references: [id])
+  destinationId Int
+  start         Location       @relation("StartRelation", fields: [startId], references: [id])
+  startId       Int
+  dateTime      DateTime?
+  rideStatus    Status         @default(EMPTY)
+  desc          String?
+  userId        String
+  rideRequests  RideRequests[]
 }
 
 model RideRequests {
@@ -54,10 +56,12 @@ model RideRequests {
 }
 
 model Location {
-  id    Int    @id @default(autoincrement())
-  city  String
-  state String
-  Ride  Ride[]
+  id               Int    @id @default(autoincrement())
+  title            String
+  city             String
+  state            String
+  destinationRides Ride[] @relation("DestinationRelation")
+  startRides       Ride[] @relation("StartRelation")
 }
 
 enum Status {
