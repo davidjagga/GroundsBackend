@@ -21,7 +21,7 @@ const pool = new Pool({
 
 // // Middleware
 app.use(cors());
-app.use('/api/rides', ridesRoutes);
+app.use('/api/ride', ridesRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/test', testRoutes);
 app.use('/api/location', locationRoutes);
