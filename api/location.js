@@ -33,12 +33,7 @@ async function getLocationData(id) {
     const location = await prisma.location.findUnique({
       where: {
         id: id,
-      },
-      include: {
-        rides: true,
-        rideRequests: true,
-  
-      },
+      }
     });
 
     return location;
