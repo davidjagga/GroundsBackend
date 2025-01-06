@@ -11,6 +11,7 @@ app.use(express.json());
 const ridesRoutes = require('./api/ride');
 const userRoutes = require('./api/user');
 const testRoutes = require('./api/test');
+const locationRoutes = require('./api/location');
 
 
 // Database connection
@@ -22,7 +23,8 @@ const pool = new Pool({
 app.use(cors());
 app.use('/api/rides', ridesRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/test', testRoutes)
+app.use('/api/test', testRoutes);
+app.use('/api/location', locationRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World');
