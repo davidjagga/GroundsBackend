@@ -7,24 +7,15 @@ const prisma = new PrismaClient();
 //------------------------------------------------------------------------------------------
 //            Create User (by email, etc.)
 //------------------------------------------------------------------------------------------
-async function createUser(userData) {
-  try {
-    const user = await prisma.user.create({
-      data: userData,
-    });
-    return user;
-  } catch (error) {
-    throw new Error(`Error creating user: ${error.message}`);
-  }
-}
 
-//route
 router.post('/createUser', async (req, res) => {
   try {
     // Get userData from req.body
     const userData = req.body;
 
-    const user = await createUser(userData);
+    const user = await prisma.user.create({
+      data: userData,
+    });
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: `Error creating user data: ${error.message}` });
@@ -36,25 +27,16 @@ router.post('/createUser', async (req, res) => {
 //------------------------------------------------------------------------------------------
 //            Delete User (by email)
 //------------------------------------------------------------------------------------------
-async function deleteUser(id) {
+
+router.post('/deleteUser', async (req, res) => {
   try {
+    const { id } = req.body;
+
     const deletedUser = await prisma.user.delete({
       where: {
         id: id,
       },
     });
-    return deletedUser;
-  } catch (error) {
-    throw new Error(`Error deleting user with id ${id}: ${error.message}`);
-  }
-}
-
-//route
-router.post('/deleteUser', async (req, res) => {
-  try {
-    const { id } = req.body;
-
-    const deletedUser = await deleteUser(id);
     res.json(deletedUser);
   } catch (error) {
     res.status(500).json({ error: `Error deleting user: ${error.message}` });
@@ -66,26 +48,17 @@ router.post('/deleteUser', async (req, res) => {
 //------------------------------------------------------------------------------------------
 //            Update User (by email)
 //------------------------------------------------------------------------------------------
-async function updateUser(id, newData) {
+
+router.post('/updateUser', async (req, res) => {
   try {
+    const { id, newData } = req.body;
+
     const updatedUser = await prisma.user.update({
       where: {
         id: id,
       },
       data: newData,
     });
-    return updatedUser;
-  } catch (error) {
-    throw new Error(`Error updating user with id ${id}: ${error.message}`);
-  }
-}
-
-//route
-router.post('/updateUser', async (req, res) => {
-  try {
-    const { id, newData } = req.body;
-
-    const updatedUser = await updateUser(id, newData);
     res.json(updatedUser);
   } catch (error) {
     res.status(500).json({ error: `Error updating user data: ${error.message}` });
@@ -97,27 +70,18 @@ router.post('/updateUser', async (req, res) => {
 //------------------------------------------------------------------------------------------
 //            Search User by Name Prefix
 //------------------------------------------------------------------------------------------
-async function findUsersByName(namePrefix) {
+
+router.post('/userByName', async (req, res) => {
   try {
-    const matchingUsers = await prisma.user.findMany({
+    const { namePrefix } = req.body;
+
+    const users = await prisma.user.findMany({
       where: {
         name: {
           contains: namePrefix.toLowerCase(),
         },
       },
     });
-    return matchingUsers;
-  } catch (error) {
-    throw new Error(`Error finding users by name prefix ${namePrefix}: ${error.message}`);
-  }
-}
-
-//route
-router.post('/userByName', async (req, res) => {
-  try {
-    const { namePrefix } = req.body;
-
-    const users = await findUsersByName(namePrefix);
     res.json(users);
   } catch (error) {
     res.status(500).json({ error: `Error fetching user data: ${error.message}` });
@@ -130,9 +94,11 @@ router.post('/userByName', async (req, res) => {
 //            Get User by Id
 //------------------------------------------------------------------------------------------
 
-async function getUserData(id) {
+router.post('/getUser', async (req, res) => {
   try {
-    const foundUser = await prisma.user.findUnique({
+    const { id } = req.body;
+
+    const user = await prisma.user.findUnique({
       where: {
         id: id,
       },
@@ -142,31 +108,10 @@ async function getUserData(id) {
   
       },
     });
-
-    return foundUser;
-  } catch (error) {
-    throw new Error(`Error finding user with id ${id}: ${error.message}`);
-  }
-}
-
-//route
-router.post('/getUser', async (req, res) => {
-  try {
-    const { id } = req.body;
-
-    const user = await getUserData(id);
     res.json(user);
   } catch (error) {
     res.status(500).json({ error: `Error fetching user data: ${error.message}` });
   }
-});
-
-
-//------------------------------------------------------------------------------------------
-
-//basic router
-router.get('/', (req, res) => {
-  res.status(200).json({ message: 'GET request to /user is working!' });
 });
 
 module.exports = router;
