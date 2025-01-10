@@ -7,20 +7,7 @@ const prisma = new PrismaClient();
 //------------------------------------------------------------------------------------------
 //            Create Ride
 //------------------------------------------------------------------------------------------
-async function makeRide(rideData) {
-  try {
-    // Create ride in the database
-    const ride = await prisma.ride.create({
-      data: rideData,
-    });
 
-    return ride;
-  } catch (error) {
-    throw new Error(`Error creating ride: ${error.message}`);
-  }
-}
-
-//route
 router.post('/createRide', async (req, res) => {
   const rideData = req.body;
 
@@ -63,7 +50,6 @@ router.post('/deleteRide', async (req, res) => {
 //            Get Ride by id
 //------------------------------------------------------------------------------------------
 
-//route
 router.post('/getRide', async (req, res) => {
   try {
     const { rideId } = req.body;
@@ -78,27 +64,6 @@ router.post('/getRide', async (req, res) => {
     res.json(ride);
   } catch (error) {
     res.status(500).json({ error: `Error retrieving ride data: ${error.message}` });
-  }
-});
-//------------------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------------------
-//            Get Upcoming Rides
-//------------------------------------------------------------------------------------------
-
-router.post('/getUpcomingRides', async (req, res) => {
-  try {
-    const upcomingRides = await prisma.ride.findMany({
-      where: {
-        dateTime: {
-          gt: new Date(),  // Checks if the ride's dateTime is greater than the current date and time
-        },
-      },
-    });
-
-    res.json(upcomingRides);
-  } catch (error) {
-    res.status(500).json({ error: `Error retrieving rides: ${error.message}` });
   }
 });
 //------------------------------------------------------------------------------------------
