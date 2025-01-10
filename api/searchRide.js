@@ -40,34 +40,34 @@ router.post('/getRidesByQuery', async (req, res) => {
           {
             title: {
               contains: query,
-              mode: insensitive
+              mode: 'insensitive'
             },
           }, 
           {
             desc: {
               contains: query,
-              mode: insensitive
+              mode: 'insensitive'
             }
           },
           {
             start: {
               city: {
                 contains: query,
-                mode: insensitive
+                mode: 'insensitive'
               }
             }
           },{
             start: {
               state: {
                 contains: query,
-                mode: insensitive
+                mode: 'insensitive'
               }
             }
           },{
             start: {
               title: {
                 contains: query,
-                mode: insensitive
+                mode: 'insensitive'
               }
             }
           },
@@ -75,21 +75,21 @@ router.post('/getRidesByQuery', async (req, res) => {
             destination: {
               city: {
                 contains: query,
-                mode: insensitive
+                mode: 'insensitive'
               }
             }
           },{
             destination: {
               state: {
                 contains: query,
-                mode: insensitive
+                mode: 'insensitive'
               }
             }
           },{
             destination: {
               title: {
                 contains: query,
-                mode: insensitive
+                mode: 'insensitive'
               }
             }
           },
@@ -97,7 +97,7 @@ router.post('/getRidesByQuery', async (req, res) => {
             creator:{
               name: {
                 contains: query,
-                mode: insensitive
+                mode: 'insensitive'
               }
             }
           }
